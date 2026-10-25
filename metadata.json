@@ -1,0 +1,6 @@
+{
+  "name": "CineVox - Plataforma de Entretenimento",
+  "description": "Página de vendas oficial do CineVox: descubra uma experiência prática e moderna para explorar filmes e séries por apenas R$ 47,00.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
