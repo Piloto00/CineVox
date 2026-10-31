@@ -13,25 +13,13 @@ import { SpecialOffer } from "./components/SpecialOffer";
 import { SecurityGuarantee } from "./components/SecurityGuarantee";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
-import { CheckoutModal } from "./components/CheckoutModal";
-import { CheckoutSettingsDrawer } from "./components/CheckoutSettingsDrawer";
 import { LegalModals, ModalType } from "./components/LegalModals";
 import { StickyBottomCTA } from "./components/StickyBottomCTA";
 import { PRODUCT_INFO } from "./data/content";
 import { trackPixelEvent, trackPixelCustom } from "./utils/pixel";
 
 export default function App() {
-  const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const [activeLegalModal, setActiveLegalModal] = useState<ModalType>(null);
-
-  // Stored checkout URL & direct redirect preference in localStorage
-  const [checkoutUrl, setCheckoutUrl] = useState<string>(() => {
-    return localStorage.getItem("cinevox_checkout_url") || "";
-  });
-  const [directRedirect, setDirectRedirect] = useState<boolean>(() => {
-    return localStorage.getItem("cinevox_direct_redirect") === "true";
-  });
 
   // Track initial page engagement & scroll movements
   useEffect(() => {
@@ -63,17 +51,7 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSaveCheckoutUrl = (url: string) => {
-    setCheckoutUrl(url);
-    localStorage.setItem("cinevox_checkout_url", url);
-  };
-
-  const handleToggleDirectRedirect = (val: boolean) => {
-    setDirectRedirect(val);
-    localStorage.setItem("cinevox_direct_redirect", String(val));
-  };
-
-  // Primary Action triggered across all CTA buttons
+  // Primary Action triggered across all CTA buttons: track event and redirect directly to Kirvano checkout
   const handlePrimaryCta = () => {
     trackPixelEvent("InitiateCheckout", {
       content_name: "CineVox - Acesso Vitalício",
@@ -83,11 +61,7 @@ export default function App() {
       num_items: 1,
     });
 
-    if (checkoutUrl && directRedirect) {
-      window.open(checkoutUrl, "_blank", "noopener,noreferrer");
-    } else {
-      setCheckoutModalOpen(true);
-    }
+    window.location.href = PRODUCT_INFO.checkoutUrl;
   };
 
   return (
@@ -110,11 +84,7 @@ export default function App() {
         <HowItWorks />
 
         {/* Special Offer (R$ 47,00) */}
-        <SpecialOffer
-          onCtaClick={handlePrimaryCta}
-          checkoutUrl={checkoutUrl}
-          onOpenSettings={() => setSettingsOpen(true)}
-        />
+        <SpecialOffer onCtaClick={handlePrimaryCta} />
 
         {/* Security & 7-Day CDC Guarantee */}
         <SecurityGuarantee />
@@ -128,23 +98,6 @@ export default function App() {
 
       {/* Floating Sticky CTA on mobile (< 15% viewport height) */}
       <StickyBottomCTA onCtaClick={handlePrimaryCta} />
-
-      {/* Checkout Processing / Simulator Modal */}
-      <CheckoutModal
-        isOpen={checkoutModalOpen}
-        onClose={() => setCheckoutModalOpen(false)}
-        configuredCheckoutUrl={checkoutUrl}
-      />
-
-      {/* Checkout Link Settings Drawer */}
-      <CheckoutSettingsDrawer
-        isOpen={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-        checkoutUrl={checkoutUrl}
-        onSaveUrl={handleSaveCheckoutUrl}
-        directRedirect={directRedirect}
-        onToggleDirectRedirect={handleToggleDirectRedirect}
-      />
 
       {/* Legal & Policy Modals */}
       <LegalModals

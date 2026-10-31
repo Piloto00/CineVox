@@ -4,15 +4,9 @@ import { PRODUCT_INFO } from "../data/content";
 
 interface SpecialOfferProps {
   onCtaClick: () => void;
-  checkoutUrl?: string;
-  onOpenSettings?: () => void;
 }
 
-export const SpecialOffer: React.FC<SpecialOfferProps> = ({
-  onCtaClick,
-  checkoutUrl,
-  onOpenSettings,
-}) => {
+export const SpecialOffer: React.FC<SpecialOfferProps> = ({ onCtaClick }) => {
   return (
     <section id="oferta" className="py-20 bg-gradient-to-b from-[#07090E] via-[#0D1220] to-[#07090E] border-t border-slate-800/80 relative">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -125,19 +119,6 @@ export const SpecialOffer: React.FC<SpecialOfferProps> = ({
                 <span>Boleto Bancário</span>
               </div>
             </div>
-
-            {/* Quick config note for page owner */}
-            {onOpenSettings && (
-              <div className="mt-6">
-                <button
-                  type="button"
-                  onClick={onOpenSettings}
-                  className="text-xs text-slate-500 hover:text-slate-300 underline cursor-pointer transition-colors"
-                >
-                  Configurar link de checkout ({checkoutUrl ? "Link configurado" : "Link padrão"})
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </div>

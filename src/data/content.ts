@@ -35,7 +35,7 @@ export const PRODUCT_INFO = {
   supportWhatsapp: "+55 (11) 98765-4321",
   companyName: "CineVox Digital",
   businessHours: "Segunda a Sexta, das 09h às 18h | Sábado, das 09h às 13h",
-  defaultCheckoutUrl: "https://pay.hotmart.com/example-cinevox", // user can override via quick settings or test simulator
+  checkoutUrl: "https://pay.kirvano.com/6594e3c5-a26e-4ee9-b1fc-49dc8128acbd",
 };
 
 export interface TrustPillar {
