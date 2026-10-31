@@ -34,34 +34,36 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           {PRODUCT_INFO.heroSubtitle}
         </p>
 
-        {/* Price badge container with promotional emphasis */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 p-4 sm:p-5 rounded-2xl border border-red-900/40 bg-slate-900/70 backdrop-blur-sm max-w-lg w-full">
-          <div className="flex flex-col items-center sm:items-start">
-            <div className="flex items-center gap-2">
-              <span className="text-xs uppercase tracking-wider text-slate-400 font-medium">
-                Promoção Especial
-              </span>
-              <span className="text-[11px] font-semibold text-rose-400 line-through">
-                {PRODUCT_INFO.originalPriceDisplay}
-              </span>
-            </div>
-            <div className="flex items-baseline gap-2 mt-0.5">
-              <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                {PRODUCT_INFO.priceDisplay}
-              </span>
-              <span className="text-xs font-semibold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">
-                Pagamento Único
-              </span>
-              <span className="text-[11px] font-bold text-amber-300 bg-amber-950/50 border border-amber-800/50 px-2 py-0.5 rounded">
-                {PRODUCT_INFO.discountSavings}
-              </span>
-            </div>
+        {/* Sleek, proportional promotional price card */}
+        <div className="mt-6 w-full max-w-sm rounded-2xl border border-red-900/40 bg-gradient-to-b from-slate-900/90 to-[#0B0F19]/90 p-4 sm:p-5 shadow-xl shadow-black/40 backdrop-blur-md">
+          {/* Top reference price */}
+          <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400">
+            <span className="uppercase tracking-wider font-medium text-[11px] text-slate-500">De</span>
+            <span className="line-through text-rose-400 font-semibold">{PRODUCT_INFO.originalPriceDisplay}</span>
+            <span className="text-slate-400">por apenas</span>
           </div>
-          <div className="h-8 w-px bg-slate-800 hidden sm:block" />
-          <div className="text-xs text-slate-400 leading-tight text-center sm:text-left">
-            <p className="text-slate-300 font-medium">Sem mensalidades ou assinaturas</p>
-            <p>Liberação imediata no seu e-mail</p>
+
+          {/* Main Price */}
+          <div className="mt-1 flex items-center justify-center">
+            <span className="text-3xl sm:text-4xl font-black text-white tracking-tight whitespace-nowrap">
+              {PRODUCT_INFO.priceDisplay}
+            </span>
           </div>
+
+          {/* Clean Badges */}
+          <div className="mt-2.5 flex items-center justify-center gap-2 text-[11px]">
+            <span className="font-semibold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2.5 py-0.5 rounded-full whitespace-nowrap">
+              Pagamento Único
+            </span>
+            <span className="font-semibold text-amber-300 bg-amber-950/60 border border-amber-800/50 px-2.5 py-0.5 rounded-full whitespace-nowrap">
+              Economia de R$ 120
+            </span>
+          </div>
+
+          {/* Microcopy */}
+          <p className="mt-2.5 text-[11px] text-slate-400 text-center">
+            Sem mensalidades · Acesso imediato no seu e-mail
+          </p>
         </div>
 
         {/* Main Primary CTA Button */}
