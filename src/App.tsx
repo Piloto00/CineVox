@@ -18,6 +18,7 @@ import { CheckoutSettingsDrawer } from "./components/CheckoutSettingsDrawer";
 import { LegalModals, ModalType } from "./components/LegalModals";
 import { StickyBottomCTA } from "./components/StickyBottomCTA";
 import { PRODUCT_INFO } from "./data/content";
+import { trackPixelEvent, trackPixelCustom } from "./utils/pixel";
 
 export default function App() {
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
@@ -32,6 +33,36 @@ export default function App() {
     return localStorage.getItem("cinevox_direct_redirect") === "true";
   });
 
+  // Track initial page engagement & scroll movements
+  useEffect(() => {
+    trackPixelEvent("ViewContent", {
+      content_name: "CineVox Landing Page",
+      content_category: "Entretenimento",
+      value: 47.0,
+      currency: "BRL",
+    });
+
+    const trackedDepths = new Set<number>();
+    const handleScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollHeight <= 0) return;
+      const scrollPercent = Math.round((window.scrollY / scrollHeight) * 100);
+
+      const milestones = [25, 50, 75, 90];
+      for (const milestone of milestones) {
+        if (scrollPercent >= milestone && !trackedDepths.has(milestone)) {
+          trackedDepths.add(milestone);
+          trackPixelCustom(`ScrollDepth_${milestone}Percent`, {
+            percent: milestone,
+          });
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleSaveCheckoutUrl = (url: string) => {
     setCheckoutUrl(url);
     localStorage.setItem("cinevox_checkout_url", url);
@@ -44,6 +75,14 @@ export default function App() {
 
   // Primary Action triggered across all CTA buttons
   const handlePrimaryCta = () => {
+    trackPixelEvent("InitiateCheckout", {
+      content_name: "CineVox - Acesso Vitalício",
+      content_category: "Entretenimento",
+      value: 47.0,
+      currency: "BRL",
+      num_items: 1,
+    });
+
     if (checkoutUrl && directRedirect) {
       window.open(checkoutUrl, "_blank", "noopener,noreferrer");
     } else {

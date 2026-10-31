@@ -12,6 +12,7 @@ import {
   Check,
 } from "lucide-react";
 import { PRODUCT_INFO } from "../data/content";
+import { trackPixelEvent, trackPixelCustom } from "../utils/pixel";
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -35,9 +36,22 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
   const mockPixCode = "00020126580014br.gov.bcb.pix0136cinevox-47-reais-pix-key-digital520400005303986540547.005802BR5925CineVox Entretenimento6009Sao Paulo62070503***6304E8A2";
 
+  const handleSelectPaymentMethod = (method: "pix" | "card" | "boleto") => {
+    setPaymentMethod(method);
+    trackPixelEvent("AddPaymentInfo", {
+      payment_type: method,
+      value: 47.0,
+      currency: "BRL",
+    });
+  };
+
   const handleCopyPix = () => {
     navigator.clipboard.writeText(mockPixCode);
     setCopiedPix(true);
+    trackPixelCustom("CopyPixCode", {
+      value: 47.0,
+      currency: "BRL",
+    });
     setTimeout(() => setCopiedPix(false), 2500);
   };
 
@@ -46,14 +60,32 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     if (!customerEmail) return;
 
     setIsSubmitting(true);
+    trackPixelEvent("Lead", {
+      content_name: "CineVox Pedido Iniciado",
+      value: 47.0,
+      currency: "BRL",
+    });
+
     setTimeout(() => {
       setIsSubmitting(false);
       setOrderCompleted(true);
+      trackPixelEvent("Purchase", {
+        content_name: "CineVox - Acesso Vitalício",
+        content_type: "product",
+        value: 47.0,
+        currency: "BRL",
+        num_items: 1,
+      });
     }, 1000);
   };
 
   const handleGoToExternalCheckout = () => {
     if (configuredCheckoutUrl) {
+      trackPixelCustom("ClickExternalCheckout", {
+        checkout_url: configuredCheckoutUrl,
+        value: 47.0,
+        currency: "BRL",
+      });
       window.open(configuredCheckoutUrl, "_blank", "noopener,noreferrer");
     }
   };
@@ -129,7 +161,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               <div className="grid grid-cols-3 gap-2">
                 <button
                   type="button"
-                  onClick={() => setPaymentMethod("pix")}
+                  onClick={() => handleSelectPaymentMethod("pix")}
                   className={`p-3 rounded-xl border text-xs font-semibold flex flex-col items-center gap-1.5 transition-all cursor-pointer ${
                     paymentMethod === "pix"
                       ? "border-emerald-500 bg-emerald-950/40 text-emerald-300"
@@ -142,7 +174,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
                 <button
                   type="button"
-                  onClick={() => setPaymentMethod("card")}
+                  onClick={() => handleSelectPaymentMethod("card")}
                   className={`p-3 rounded-xl border text-xs font-semibold flex flex-col items-center gap-1.5 transition-all cursor-pointer ${
                     paymentMethod === "card"
                       ? "border-red-500 bg-red-950/40 text-red-300"
@@ -155,7 +187,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
                 <button
                   type="button"
-                  onClick={() => setPaymentMethod("boleto")}
+                  onClick={() => handleSelectPaymentMethod("boleto")}
                   className={`p-3 rounded-xl border text-xs font-semibold flex flex-col items-center gap-1.5 transition-all cursor-pointer ${
                     paymentMethod === "boleto"
                       ? "border-blue-500 bg-blue-950/40 text-blue-300"

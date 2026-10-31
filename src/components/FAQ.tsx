@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { FAQ_LIST } from "../data/content";
+import { trackPixelCustom } from "../utils/pixel";
 
 export const FAQ: React.FC = () => {
   const [openId, setOpenId] = useState<string | null>("included");
 
-  const toggle = (id: string) => {
-    setOpenId(openId === id ? null : id);
+  const toggle = (id: string, question: string) => {
+    const nextState = openId === id ? null : id;
+    setOpenId(nextState);
+    if (nextState !== null) {
+      trackPixelCustom("FAQ_Expanded", { question_id: id, question_title: question });
+    }
   };
 
   return (
@@ -36,7 +41,7 @@ export const FAQ: React.FC = () => {
               >
                 <button
                   type="button"
-                  onClick={() => toggle(faq.id)}
+                  onClick={() => toggle(faq.id, faq.question)}
                   aria-expanded={isOpen}
                   className="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer hover:bg-slate-800/40 transition-colors"
                 >
