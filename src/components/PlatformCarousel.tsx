@@ -81,10 +81,14 @@ export const PlatformCarousel: React.FC<PlatformCarouselProps> = ({ onCtaClick }
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
-    trackPixelCustom("Carousel_Slide_Changed", {
-      slide_id: SLIDES[index].id,
-      slide_title: SLIDES[index].title,
-    });
+    trackPixelCustom(
+      "Carousel_Slide_Changed",
+      {
+        slide_id: SLIDES[index].id,
+        slide_title: SLIDES[index].title,
+      },
+      2000
+    );
   };
 
   const handleNext = () => {

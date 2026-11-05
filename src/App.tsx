@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { PlatformCarousel } from "./components/PlatformCarousel";
@@ -21,15 +21,20 @@ import { trackPixelEvent, trackPixelCustom } from "./utils/pixel";
 
 export default function App() {
   const [activeLegalModal, setActiveLegalModal] = useState<ModalType>(null);
+  const isNavigatingRef = useRef(false);
+  const hasTrackedViewContentRef = useRef(false);
 
-  // Track initial page engagement & scroll movements
+  // Track initial page engagement & scroll movements (guaranteed once per session)
   useEffect(() => {
-    trackPixelEvent("ViewContent", {
-      content_name: "CineVox Landing Page",
-      content_category: "Entretenimento",
-      value: 46.99,
-      currency: "BRL",
-    });
+    if (!hasTrackedViewContentRef.current) {
+      hasTrackedViewContentRef.current = true;
+      trackPixelEvent("ViewContent", {
+        content_name: "CineVox Landing Page",
+        content_category: "Entretenimento",
+        value: 46.99,
+        currency: "BRL",
+      }, { oncePerSession: true });
+    }
 
     const trackedDepths = new Set<number>();
     const handleScroll = () => {
@@ -54,13 +59,17 @@ export default function App() {
 
   // Primary Action triggered across all CTA buttons: track event and redirect directly to Kirvano checkout
   const handlePrimaryCta = () => {
+    // Prevent duplicate events on fast/double clicks
+    if (isNavigatingRef.current) return;
+    isNavigatingRef.current = true;
+
     trackPixelEvent("InitiateCheckout", {
       content_name: "CineVox - Acesso Vitalício",
       content_category: "Entretenimento",
       value: 46.99,
       currency: "BRL",
       num_items: 1,
-    });
+    }, { cooldownMs: 6000 });
 
     window.location.href = PRODUCT_INFO.checkoutUrl;
   };

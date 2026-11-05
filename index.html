@@ -22,19 +22,14 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
+      // Disable automatic button click tracking to prevent duplicate InitiateCheckout / SubscribedButtonClick
+      fbq('set', 'autoConfig', false, '2019940606076995');
       fbq('init', '2019940606076995');
-      fbq('track', 'PageView');
+      fbq('track', 'PageView', {}, { eventID: 'pageview_init' });
     </script>
     <!-- End Meta Pixel Code -->
   </head>
   <body class="bg-[#07090E] text-slate-100 antialiased selection:bg-red-600 selection:text-white">
-    <!-- Meta Pixel noscript fallback (placed in body per HTML5 spec) -->
-    <noscript>
-      <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=2019940606076995&ev=PageView&noscript=1"
-        alt=""
-      />
-    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

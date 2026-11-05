@@ -10,7 +10,7 @@ export const FAQ: React.FC = () => {
     const nextState = openId === id ? null : id;
     setOpenId(nextState);
     if (nextState !== null) {
-      trackPixelCustom("FAQ_Expanded", { question_id: id, question_title: question });
+      trackPixelCustom("FAQ_Expanded", { question_id: id, question_title: question }, 2000);
     }
   };
 
