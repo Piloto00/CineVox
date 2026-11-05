@@ -52,7 +52,11 @@ export const SpecialOffer: React.FC<SpecialOfferProps> = ({ onCtaClick }) => {
 
               <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/60 text-xs font-bold text-emerald-300">
                 <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                <span>PAGAMENTO ÚNICO · ECONOMIA DE R$ 120,00</span>
+                <span>PAGAMENTO ÚNICO · ECONOMIA DE R$ 120,01</span>
+              </div>
+
+              <div className="mt-1 text-xs font-semibold text-emerald-400">
+                Total apresentado no checkout: R$ 46,99
               </div>
 
               {/* Inclusions checklist */}
@@ -79,7 +83,7 @@ export const SpecialOffer: React.FC<SpecialOfferProps> = ({ onCtaClick }) => {
                   <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800/60">
                     <Check className="h-2.5 w-2.5" />
                   </div>
-                  <span>Envio imediato das instruções de acesso no seu e-mail</span>
+                  <span>Receba as instruções de acesso por e-mail após a confirmação do pagamento</span>
                 </div>
                 <div className="flex items-start gap-3 text-sm text-slate-200">
                   <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800/60">
@@ -102,7 +106,7 @@ export const SpecialOffer: React.FC<SpecialOfferProps> = ({ onCtaClick }) => {
                   className="w-full group inline-flex items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 px-6 py-4 text-base sm:text-lg font-bold text-white shadow-xl shadow-red-950/60 transition-all duration-200 hover:from-red-500 hover:to-rose-500 active:scale-[0.98] cursor-pointer whitespace-nowrap"
                 >
                   <Lock className="h-5 w-5 text-white/90" />
-                  <span>QUERO ACESSAR AGORA</span>
+                  <span>{PRODUCT_INFO.heroCta}</span>
                   <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
               </div>
@@ -117,6 +121,12 @@ export const SpecialOffer: React.FC<SpecialOfferProps> = ({ onCtaClick }) => {
                 <span className="text-emerald-400 font-medium">PIX Imediato</span>
                 <span aria-hidden="true" className="text-slate-600">·</span>
                 <span>Boleto Bancário</span>
+              </div>
+
+              {/* Fast email delivery notice */}
+              <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-center gap-2 text-xs text-emerald-400 font-medium">
+                <Zap className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                <span>{PRODUCT_INFO.fastDeliveryText}</span>
               </div>
             </div>
           </div>

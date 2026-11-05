@@ -67,7 +67,7 @@ export const HowItWorks: React.FC = () => {
         {/* Explicit clarity callout regarding payment model */}
         <div className="mt-10 rounded-xl border border-emerald-900/50 bg-emerald-950/20 p-5 text-center max-w-3xl mx-auto">
           <p className="text-sm text-emerald-200">
-            <span className="font-bold text-emerald-300">Atenção sobre a modalidade de pagamento:</span> O valor promocional de <span className="line-through text-slate-400">R$ 167,00</span> por <span className="font-extrabold text-white">R$ 47,00</span> refere-se a um <span className="font-bold underline decoration-emerald-500 underline-offset-2">pagamento único</span>. Não se trata de uma assinatura mensal. Você paga apenas uma vez pelo acesso aos recursos incluídos nesta oferta.
+            <span className="font-bold text-emerald-300">Atenção sobre a modalidade de pagamento:</span> O valor promocional de <span className="line-through text-slate-400">R$ 167,00</span> por <span className="font-extrabold text-white">R$ 46,99</span> (total apresentado no checkout) refere-se a um <span className="font-bold underline decoration-emerald-500 underline-offset-2">pagamento único</span>. Não se trata de uma assinatura mensal. Você paga apenas uma vez pelo acesso aos recursos incluídos nesta oferta.
           </p>
         </div>
       </div>

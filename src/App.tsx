@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { PlatformCarousel } from "./components/PlatformCarousel";
 import { Benefits } from "./components/Benefits";
 import { AntiScamTrust } from "./components/AntiScamTrust";
 import { HowItWorks } from "./components/HowItWorks";
@@ -26,7 +27,7 @@ export default function App() {
     trackPixelEvent("ViewContent", {
       content_name: "CineVox Landing Page",
       content_category: "Entretenimento",
-      value: 47.0,
+      value: 46.99,
       currency: "BRL",
     });
 
@@ -56,7 +57,7 @@ export default function App() {
     trackPixelEvent("InitiateCheckout", {
       content_name: "CineVox - Acesso Vitalício",
       content_category: "Entretenimento",
-      value: 47.0,
+      value: 46.99,
       currency: "BRL",
       num_items: 1,
     });
@@ -65,7 +66,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#07090E] text-slate-100 flex flex-col font-sans selection:bg-red-600 selection:text-white pb-14 sm:pb-0">
+    <div className="min-h-screen bg-[#07090E] text-slate-100 flex flex-col font-sans selection:bg-red-600 selection:text-white pb-32 sm:pb-0">
       {/* Top Bar Navigation */}
       <Header onCtaClick={handlePrimaryCta} />
 
@@ -73,6 +74,9 @@ export default function App() {
       <main className="flex-grow">
         {/* Hero Section */}
         <Hero onCtaClick={handlePrimaryCta} />
+
+        {/* Real App Interior Carousel (Filmes, Séries, TV Ao Vivo, Doramas, Animes) */}
+        <PlatformCarousel onCtaClick={handlePrimaryCta} />
 
         {/* Benefits & Product Presentation */}
         <Benefits />
@@ -83,7 +87,7 @@ export default function App() {
         {/* 3 Step Process & Clarity on Single Payment */}
         <HowItWorks />
 
-        {/* Special Offer (R$ 47,00) */}
+        {/* Special Offer (R$ 46,99) */}
         <SpecialOffer onCtaClick={handlePrimaryCta} />
 
         {/* Security & 7-Day CDC Guarantee */}

@@ -35,6 +35,12 @@ export const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
         {/* Zone 2: 4-5 Clean single-line text links */}
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
           <button
+            onClick={() => scrollTo("plataforma-por-dentro")}
+            className="hover:text-white transition-colors cursor-pointer whitespace-nowrap shrink-0"
+          >
+            Por Dentro
+          </button>
+          <button
             onClick={() => scrollTo("beneficios")}
             className="hover:text-white transition-colors cursor-pointer whitespace-nowrap shrink-0"
           >
@@ -92,6 +98,12 @@ export const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-slate-800 bg-[#0B0F19] px-4 py-4 space-y-3">
           <button
+            onClick={() => scrollTo("plataforma-por-dentro")}
+            className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-white"
+          >
+            Por Dentro da Plataforma
+          </button>
+          <button
             onClick={() => scrollTo("beneficios")}
             className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-white"
           >
@@ -113,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
             onClick={() => scrollTo("oferta")}
             className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-white"
           >
-            Oferta Especial (R$ 47,00)
+            Oferta Especial (R$ 46,99)
           </button>
           <button
             onClick={() => scrollTo("faq")}

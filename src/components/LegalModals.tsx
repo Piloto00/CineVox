@@ -26,7 +26,7 @@ export const LegalModals: React.FC<LegalModalsProps> = ({ activeModal, onClose }
                 <strong>1. Objeto:</strong> O presente instrumento estabelece as regras e condições para uso da plataforma digital CineVox, que atua como guia e agregador informativo de entretenimento audiovisual, catálogo interativo e fichas técnicas para consulta e orientação do usuário.
               </p>
               <p>
-                <strong>2. Acesso e Pagamento:</strong> O acesso é concedido mediante pagamento único no valor de R$ 47,00 (quarenta e sete reais), sem recorrência de mensalidades ou cobranças automáticas adicionais.
+                <strong>2. Acesso e Pagamento:</strong> O acesso é concedido mediante pagamento único no valor total apresentado no checkout de R$ 46,99 (quarenta e seis reais e noventa e nove centavos), sem recorrência de mensalidades ou cobranças automáticas adicionais.
               </p>
               <p>
                 <strong>3. Conformidade Legal de Conteúdo:</strong> O CineVox respeita integralmente as legislações de propriedade intelectual e direitos autorais. O serviço opera exclusivamente como indexador, guia de sinopses e exibições autorizadas de trailers promocionais públicos. A plataforma não armazena, hospeda nem distribui transmissões piratas de terceiros protegidas por direitos autorais sem a respectiva licença.
@@ -74,7 +74,7 @@ export const LegalModals: React.FC<LegalModalsProps> = ({ activeModal, onClose }
             </div>
             <div className="space-y-4 text-sm text-slate-300 leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
               <p>
-                <strong>1. Direito de Arrependimento (Garantia Legal):</strong> Em total conformidade com o Artigo 49 do Código de Defesa do Consumidor (CDC), o cliente tem o prazo de 7 (sete) dias corridos, contados a partir da data de confirmação da compra, para solicitar o cancelamento e reembolso integral do valor pago de R$ 47,00.
+                <strong>1. Direito de Arrependimento (Garantia Legal):</strong> Em total conformidade com o Artigo 49 do Código de Defesa do Consumidor (CDC), o cliente tem o prazo de 7 (sete) dias corridos, contados a partir da data de confirmação da compra, para solicitar o cancelamento e reembolso integral do valor pago de R$ 46,99.
               </p>
               <p>
                 <strong>2. Procedimento Simples:</strong> Para solicitar o reembolso dentro do prazo de 7 dias, basta enviar um e-mail para <span className="text-white font-mono">{PRODUCT_INFO.supportEmail}</span> com o assunto "Solicitação de Reembolso" informando o número do pedido ou o e-mail cadastrado no ato da compra.
