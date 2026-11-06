@@ -18,14 +18,32 @@ import { LegalModals, ModalType } from "./components/LegalModals";
 import { StickyBottomCTA } from "./components/StickyBottomCTA";
 import { PRODUCT_INFO } from "./data/content";
 import { trackPixelEvent, trackPixelCustom } from "./utils/pixel";
+import { initTracking, buildKirvanoCheckoutUrl } from "./utils/tracking";
 
 export default function App() {
   const [activeLegalModal, setActiveLegalModal] = useState<ModalType>(null);
   const isNavigatingRef = useRef(false);
   const hasTrackedViewContentRef = useRef(false);
 
-  // Track initial page engagement & scroll movements (guaranteed once per session)
+  // Initialize UTM tracking and page engagement on mount
   useEffect(() => {
+    // Capture & persist UTM parameters immediately
+    initTracking();
+
+    // Automatically decorate any <a> tags pointing to Kirvano
+    const updateKirvanoLinks = () => {
+      const links = document.querySelectorAll<HTMLAnchorElement>('a[href*="kirvano.com"], a.btn-checkout');
+      links.forEach((link) => {
+        try {
+          link.href = buildKirvanoCheckoutUrl(link.href);
+        } catch (e) {
+          console.error("[Tracking] Error updating link:", e);
+        }
+      });
+    };
+    updateKirvanoLinks();
+
+    // Track initial page engagement & scroll movements (guaranteed once per session)
     if (!hasTrackedViewContentRef.current) {
       hasTrackedViewContentRef.current = true;
       trackPixelEvent("ViewContent", {
@@ -57,7 +75,7 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Primary Action triggered across all CTA buttons: track event and redirect directly to Kirvano checkout
+  // Primary Action triggered across all CTA buttons: track event and redirect to Kirvano with full UTM parameters
   const handlePrimaryCta = () => {
     // Prevent duplicate events on fast/double clicks
     if (isNavigatingRef.current) return;
@@ -71,7 +89,8 @@ export default function App() {
       num_items: 1,
     }, { cooldownMs: 6000 });
 
-    window.location.href = PRODUCT_INFO.checkoutUrl;
+    const targetCheckoutUrl = buildKirvanoCheckoutUrl(PRODUCT_INFO.checkoutUrl);
+    window.location.href = targetCheckoutUrl;
   };
 
   return (

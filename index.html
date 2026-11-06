@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineVox | Seu próximo filme favorito está a um clique</title>
-    <meta name="description" content="Descubra uma experiência de entretenimento prática e moderna para explorar filmes e séries em um só lugar. Acesso completo por R$ 47,00." />
+    <meta name="description" content="Descubra uma experiência de entretenimento prática e moderna para explorar filmes e séries em um só lugar. Acesso completo por R$ 46,99." />
     <meta property="og:title" content="CineVox | Seu próximo filme favorito está a um clique" />
-    <meta property="og:description" content="Descubra uma experiência de entretenimento prática e moderna para explorar filmes e séries em um só lugar. Acesso completo por R$ 47,00." />
+    <meta property="og:description" content="Descubra uma experiência de entretenimento prática e moderna para explorar filmes e séries em um só lugar. Acesso completo por R$ 46,99." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +26,39 @@
       fbq('set', 'autoConfig', false, '2019940606076995');
       fbq('init', '2019940606076995');
       fbq('track', 'PageView', {}, { eventID: 'pageview_init' });
+    </script>
+    <!-- Early UTM Capture Script (Guarantees zero parameter loss on first load) -->
+    <script>
+      (function() {
+        try {
+          if (window.location.search) {
+            var search = window.location.search.substring(1);
+            var params = new URLSearchParams(search);
+            var tracked = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'src', 'sck', 'ttclid'];
+            var current = {};
+            tracked.forEach(function(k) {
+              var v = params.get(k);
+              if (v && v.trim()) current[k] = v.trim();
+            });
+            params.forEach(function(value, key) {
+              if (value && value.trim() && (key.indexOf('utm_') === 0 || key.indexOf('src') === 0 || key.indexOf('sck') === 0)) {
+                current[key] = value.trim();
+              }
+            });
+            if (Object.keys(current).length > 0) {
+              var prev = {};
+              try {
+                var raw = sessionStorage.getItem('cinevox_utm_tracking') || localStorage.getItem('cinevox_utm_tracking');
+                if (raw) prev = JSON.parse(raw) || {};
+              } catch(e) {}
+              var merged = Object.assign({}, prev, current);
+              var str = JSON.stringify(merged);
+              try { sessionStorage.setItem('cinevox_utm_tracking', str); } catch(e) {}
+              try { localStorage.setItem('cinevox_utm_tracking', str); } catch(e) {}
+            }
+          }
+        } catch(e) {}
+      })();
     </script>
     <!-- End Meta Pixel Code -->
   </head>
