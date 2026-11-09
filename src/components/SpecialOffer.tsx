@@ -20,43 +20,30 @@ export const SpecialOffer: React.FC<SpecialOfferProps> = ({ onCtaClick }) => {
             {/* Header Badge */}
             <div className="inline-flex items-center gap-2 rounded-full border border-red-800/80 bg-red-950/40 px-3.5 py-1 text-xs font-semibold text-red-400 mb-4">
               <Zap className="h-3.5 w-3.5 text-red-400" />
-              <span>Oferta Direta e Transparente</span>
+              <span>Acesso Completo CineVox</span>
             </div>
 
-            {/* Required Headline */}
+            {/* Headline */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              {PRODUCT_INFO.specialOfferHeadline}
+              Tenha acesso a um mundo de entretenimento!
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-xl mx-auto">
-              {PRODUCT_INFO.specialOfferSubtitle}
+              Filmes, séries, animes, doramas e TV ao vivo em uma experiência prática e moderna para toda a família.
             </p>
 
             {/* Price Box */}
             <div className="mt-8 rounded-2xl border border-slate-800 bg-[#07090E]/90 p-6 sm:p-8 max-w-lg mx-auto">
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
-                  Preço Regular:
-                </span>
-                <span className="text-base font-bold text-rose-400 line-through">
-                  {PRODUCT_INFO.originalPriceDisplay}
-                </span>
-              </div>
-
-              <div className="mt-2 flex items-baseline justify-center gap-2">
-                <span className="text-xs text-slate-400">Por apenas</span>
+              <div className="text-center">
                 <span className="text-4xl sm:text-5xl font-black tracking-tight text-white">
                   {PRODUCT_INFO.priceDisplay}
                 </span>
-              </div>
-
-              <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/60 text-xs font-bold text-emerald-300">
-                <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                <span>PAGAMENTO ÚNICO · ECONOMIA DE R$ 120,01</span>
-              </div>
-
-              <div className="mt-1 text-xs font-semibold text-emerald-400">
-                Total apresentado no checkout: R$ 46,99
+                <div className="mt-2 text-sm font-bold text-emerald-400">
+                  Pagamento único. Sem mensalidade recorrente.
+                </div>
+                <div className="mt-1 text-xs text-slate-400">
+                  Acesso conforme as condições da licença vitalícia.
+                </div>
               </div>
 
               {/* Inclusions checklist */}

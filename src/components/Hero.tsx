@@ -18,31 +18,31 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Main Hero Card matching user specification */}
         <div className="w-full max-w-md rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-[#0B111E] p-6 sm:p-8 text-center shadow-2xl backdrop-blur-md">
+          {/* Brand Wordmark Tag */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-red-800/60 bg-red-950/40 px-3.5 py-1 text-xs font-extrabold tracking-wider uppercase text-red-400 mb-3">
+            <span>CINEVOX</span>
+          </div>
+
           {/* Main Title */}
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
-            {PRODUCT_INFO.heroHeadline}
+            Tenha acesso a um mundo de entretenimento!
           </h1>
 
           {/* Red Highlight Callout */}
-          <p className="mt-3 text-lg sm:text-xl font-bold text-red-500 leading-snug">
+          <p className="mt-3 text-base sm:text-lg font-bold text-red-500 leading-snug">
             {PRODUCT_INFO.heroHighlight}
           </p>
 
-          {/* Description */}
-          <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed max-w-sm mx-auto">
-            {PRODUCT_INFO.heroSubtitle}
-          </p>
-
-          {/* Price */}
-          <div className="mt-6 flex flex-col items-center justify-center">
-            <span className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          {/* Price Presentation */}
+          <div className="mt-6 flex flex-col items-center justify-center pt-5 border-t border-slate-800/80">
+            <span className="text-4xl sm:text-5xl font-black text-white tracking-tight">
               {PRODUCT_INFO.priceDisplay}
             </span>
-            <span className="mt-1 text-xs font-bold uppercase tracking-widest text-slate-300">
-              {PRODUCT_INFO.lifetimeAccess}
+            <span className="mt-2 text-sm font-bold text-emerald-400">
+              Pagamento único. Sem mensalidade recorrente.
             </span>
-            <span className="mt-1.5 text-xs text-emerald-400 font-semibold">
-              Total no checkout: R$ 46,99 em pagamento único
+            <span className="mt-1 text-xs text-slate-400">
+              Acesso conforme as condições da licença vitalícia.
             </span>
           </div>
 

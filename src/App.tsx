@@ -49,7 +49,7 @@ export default function App() {
       trackPixelEvent("ViewContent", {
         content_name: "CineVox Landing Page",
         content_category: "Entretenimento",
-        value: 46.99,
+        value: 47.0,
         currency: "BRL",
       }, { oncePerSession: true });
     }
@@ -84,7 +84,7 @@ export default function App() {
     trackPixelEvent("InitiateCheckout", {
       content_name: "CineVox - Acesso Vitalício",
       content_category: "Entretenimento",
-      value: 46.99,
+      value: 47.0,
       currency: "BRL",
       num_items: 1,
     }, { cooldownMs: 6000 });
@@ -115,7 +115,7 @@ export default function App() {
         {/* 3 Step Process & Clarity on Single Payment */}
         <HowItWorks />
 
-        {/* Special Offer (R$ 46,99) */}
+        {/* Special Offer (R$ 47,00) */}
         <SpecialOffer onCtaClick={handlePrimaryCta} />
 
         {/* Security & 7-Day CDC Guarantee */}

@@ -39,23 +39,11 @@ export const StickyBottomCTA: React.FC<StickyBottomCTAProps> = ({ onCtaClick }) 
       <div className="flex items-center justify-between gap-3 px-3 py-2.5 max-w-md mx-auto">
         {/* Price column guaranteed on single lines */}
         <div className="flex flex-col shrink-0 justify-center">
-          <div className="flex items-center gap-1.5 whitespace-nowrap text-[10px] leading-none mb-1">
-            <span className="text-slate-400 line-through">
-              {PRODUCT_INFO.originalPriceDisplay}
-            </span>
-            <span className="text-emerald-400 font-bold bg-emerald-950/90 px-1 py-0.5 rounded border border-emerald-800/50">
-              -R$ 120,01
-            </span>
+          <div className="text-base sm:text-lg font-black text-white tracking-tight whitespace-nowrap leading-none">
+            {PRODUCT_INFO.priceDisplay}
           </div>
-
-          <div className="flex items-baseline gap-1 whitespace-nowrap leading-none">
-            <span className="text-[11px] text-slate-300 font-medium">Por</span>
-            <span className="text-base font-black text-white tracking-tight">
-              {PRODUCT_INFO.priceDisplay}
-            </span>
-            <span className="text-[9px] font-bold text-slate-400 uppercase">
-              vitalício
-            </span>
+          <div className="text-[10px] font-semibold text-emerald-400 whitespace-nowrap leading-tight mt-1">
+            Pagamento único · Sem mensalidade
           </div>
         </div>
 

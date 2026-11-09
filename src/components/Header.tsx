@@ -125,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
             onClick={() => scrollTo("oferta")}
             className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-white"
           >
-            Oferta Especial (R$ 46,99)
+            Oferta (R$ 47,00)
           </button>
           <button
             onClick={() => scrollTo("faq")}
